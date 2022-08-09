@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="gambar">
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    {% if filename %}
+        <h2>Prediksi Gambar</h2>
+        <h4>{{ message }}</h4>
+        <p>Nama Buah <b>{{ pred[1].upper() }}</b></p>
+        <p>{{ "Probabilitas: {:.2f}%".format(pred[0]*100) }}</p>
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}" width="350px" height="350px">
+        </div>
+    {% endif %}
+</body>
+</html>
