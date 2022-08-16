@@ -19,7 +19,7 @@
             <div class="card-body">
                 <form method="post" action="/predict" enctype="multipart/form-data">
                     <div class="mb-3">
-                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="file">
+                        <input class="form-control form-control-sm" id="formFileSm" type="file" name="file" required>
                     </div>
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Submit</button>
@@ -28,6 +28,12 @@
             </div>
         </div>
 
+        {% if message is defined: %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+        
         {% if filename %}
         <div class="card" style="margin-top: 50px;">
             <div class="card-header">
@@ -43,6 +49,7 @@
                     <p>File terupload di: <a href="{{ path }}" target="_blank">{{ filename }}</a></p>
                     <p>Jenis Jamur <b>{{ pred[1].upper() }}</b></p>
                     <p>{{ "Kemiripan: {:.2f}%".format(pred[0]*100) }}</p>
+                    <p>{{ c }}</p>
                 </div>
               </div>
         </div>
